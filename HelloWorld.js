@@ -69,14 +69,6 @@ const HelloWorldApp=()=>{
                 alignItems:"center"
                 }}>
                 <Text>Hello world!</Text>
-                <Text>Hello mky!</Text>
-            </View>
-            <View style={{
-                // flex:1,
-                // justifyContent:"center",
-                alignItems:"center"
-                }}>
-                <Text>Hello world!</Text>
             </View>
             <View>
                 <Greet name="mky"/>
@@ -91,9 +83,18 @@ const HelloWorldApp=()=>{
                 }} title="Button"></Button>
             </View>
             <ToggleView/>
-            <View>
-                <ImageOnline/>
-            </View>
+            <ScrollView>
+                <View>
+                    <ImageOnline/>
+                </View>
+                <ScrollView>
+                    <Text>it seems that inner ScrollView do not work</Text>
+                    <MegumiImage/>
+                    <MegumiImage/>
+                    <MegumiImage/>
+                </ScrollView>
+            </ScrollView>
+            <Text>after outer scroll view</Text>
         </>
     )
 }
