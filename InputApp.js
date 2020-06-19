@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, TextInput, Text} from 'react-native'
+import {View, TextInput, Text, FlatList, Button, Alert, SectionList} from 'react-native'
 
 const InputView1=()=>{
     const [text, setText]=useState('');
@@ -48,16 +48,74 @@ const HundredCal=()=>{
     )
 }
 
+const FlatListView=()=>{
+    const [data, setData]=useState([
+        {key:'Michael'},
+        {key:'Trevor'},
+        {key:'Franklin'},
+        {key:'Lemma'},
+        {key: "Tracy"},
+        {key: "Amanda"},
+        {key: "Black"},
+        {key: 'Harry'},
+        {key: 'Hermoin'},
+        {key: "Vincenzo"},
+        {key: 'Hanyuu'},
+        {key: 'Jeremony'}
+    ])
+    return (
+        <View>
+            <FlatList 
+                style={{width: 200}}
+                ItemSeparatorComponent={()=><View style={{height:1, backgroundColor:'black'}}/>}
+                data={data}
+                renderItem={({item})=>{
+                    return <Text>{item.key}</Text>
+                }}
+                ListHeaderComponent={<Text style={{color:"red"}}>flat list view</Text>}
+                ListHeaderComponentStyle={{
+                    borderWidth: 1,
+                }}
+            />
+            <Button onPress={()=>{
+                data.push({key:'added item'})
+                //Alert.alert(data.length.toString())
+                setData(data)
+            }}
+            title="add item"></Button>
+        </View>
+    )
+}
+
+const SectionListView=()=>{
+    return(
+        <View>
+            <SectionList style={{width:200}}
+                sections={[
+                    {title:'D', data:['Devin', 'Dan', 'Dominic']},
+                    {title:'J', data:['Jackson','James','Jimmy']},
+                    {title:'T', data:['Trevor', 'Tracy']}
+                ]}
+                renderItem={({item})=><Text style={{textDecorationLine: 'underline'}}>{item}</Text>}
+                renderSectionHeader={({section})=><Text style={{backgroundColor:'gray'}}>{section.title}</Text>}
+                keyExtractor={(item, index)=>index}/>
+        </View>
+    )
+}
+
 const InputApp=()=>{
     return(
         <>
-            <InputView1/>
+            <InputView1 style={{flex:2}}/>
             <View 
             style={{
                 flexDirection:'row',
+                flex: 1
             }}>
                 <HundredCal/>
             </View>
+            <FlatListView/>
+            <SectionListView/>
         </>
     )
 }
