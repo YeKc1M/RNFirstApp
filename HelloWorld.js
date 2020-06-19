@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Text, View, ScrollView, Image, Button, Alert, StyleSheet} from 'react-native'
 
 let megumiPic=require("./preview.jpg")
@@ -9,26 +9,40 @@ class Greet extends React.Component{
     }
 }
 
-class ToggleView extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={show:true};
-    }
-    handleClick(){
-        this.setState(()=>({show:!this.state.show}))
-    }
-    render(){
-        return(
-            <View>
-                <View>
-                    <Button onPress={()=>this.handleClick()} title={this.state.show?"hide":"show"}></Button>
-                </View>
-                {this.state.show && <View>
-                    <MegumiImage/>
-                </View>}
-            </View>
-        )
-    }
+// class ToggleView extends React.Component{
+//     constructor(props){
+//         super(props)
+//         this.state={show:true};
+//     }
+//     handleClick(){
+//         this.setState(()=>({show:!this.state.show}))
+//     }
+//     render(){
+//         return(
+//             <View>
+//                 <View>
+//                     <Button onPress={()=>this.handleClick()} title={this.state.show?"hide":"show"}></Button>
+//                 </View>
+//                 {this.state.show && <View>
+//                     <MegumiImage/>
+//                 </View>}
+//             </View>
+//         )
+//     }
+// }
+
+const ToggleView=()=>{
+    const [show, setShow]=useState(true)
+    return (
+        <View>
+        <View>
+            <Button onPress={()=>setShow(!show)} title={show? "hide":"show"}></Button>
+        </View>
+        {show &&<View>
+            <MegumiImage/>
+            </View>}
+        </View>
+    )
 }
 
 class MegumiImage extends React.Component{
