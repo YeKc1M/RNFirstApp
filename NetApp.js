@@ -19,12 +19,13 @@ class UserFlatList extends React.Component{
     }
     render(){
         //Alert.alert(this.state.users.toString())
+        //const {users, isLoading}=this.state
         return <View>
             {this.state.isLoading? <ActivityIndicator/>:
             <FlatList
                 data={this.state.users}
                 ListHeaderComponent={<Text>Users</Text>}
-                renderItem={(item)=>{return <Text>{item.name}</Text>}}
+                renderItem={({item})=><Text>{item.name}</Text>}
                 keyExtractor={(item, index)=>{return index.toString()}}
             />}
         </View>
