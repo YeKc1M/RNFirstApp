@@ -87,6 +87,50 @@ const FlatListView=()=>{
     )
 }
 
+class FlatListClass extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            data:[
+                {key:'Michael'},
+                {key:'Trevor'},
+                {key:'Franklin'},
+                {key:'Lemma'},
+                {key: "Tracy"},
+                {key: "Amanda"},
+                {key: "Black"},
+                {key: 'Harry'},
+                {key: 'Hermoin'},
+                {key: "Vincenzo"},
+                {key: 'Hanyuu'},
+                {key: 'Jeremony'}
+            ]
+        }
+    }
+    handleClick(){
+        this.state.data.push({key:'add'})
+        Alert.alert(this.state.data.length.toString())
+        this.setState({data:this.state.data})
+    }
+    render(){
+        return <View>
+            <FlatList 
+                style={{width: 200}}
+                ItemSeparatorComponent={()=><View style={{height:1, backgroundColor:'black'}}/>}
+                data={this.state.data}
+                renderItem={({item})=>{
+                    return <Text>{item.key}</Text>
+                }}
+                ListHeaderComponent={<Text style={{color:"red"}}>flat list view</Text>}
+                ListHeaderComponentStyle={{
+                    borderWidth: 1,
+                }}
+            />
+            <Button onPress={()=>this.handleClick()} title="add item"></Button>
+        </View>
+    }
+}
+
 const SectionListView=()=>{
     return(
         <View>
@@ -106,16 +150,16 @@ const SectionListView=()=>{
 const InputApp=()=>{
     return(
         <>
-            <InputView1 style={{flex:2}}/>
+            <InputView1/>
             <View 
             style={{
                 flexDirection:'row',
-                flex: 1
             }}>
                 <HundredCal/>
             </View>
-            <FlatListView/>
-            <SectionListView/>
+            {/* <FlatListView/> */}
+            {/* <SectionListView/> */}
+            <FlatListClass/>
         </>
     )
 }
